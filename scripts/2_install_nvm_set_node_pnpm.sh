@@ -2,22 +2,27 @@
 # to make execurable
 # chmod +x install_nodejs.sh
 
-echo "- Dowload NVM  -----------------------------------------------"
+echo "- Dowload NodeJs installer -----------------------------------------------"
 
-sudo pacman -S nvm
-
-# nvm ls-remote --lts
-
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install jorgebucaran/nvm.fish
+nvm ls-remote
 nvm install 22
-nvm use 22 
+
+fish_add_path  ~/.local/share/nvm/v22.22.1/bin
+
+echo 'export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.config/fish/config.fish
 
 echo "- Install NPM packages --------------------------------------------------"
-
+&&
 npm i -g @ast-grep/cli npm-check-updates
-
+&&
 node -v
+&&
 npm -v
-
+&&
+nvm -v
 
 echo "- Install PNPM COREPACK packages --------------------------------------------------"
 
