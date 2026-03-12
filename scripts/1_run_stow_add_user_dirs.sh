@@ -2,38 +2,30 @@
 
 echo "Stow ---------------------------------------------------------------"
 
-sudo pacman -S stow tumbler bitwarden hyprpaper
-sudo pacman -R blueman wofi wpaperd emote
-
-echo "-------"
-
 cd ~/.dotfiles-cachyos
-mkdir -p ~/.config/bkp
+mkdir -p ~/.config/_BKP
 echo "-------"
 
-mv ~/.config/waybar ~/.config/bkp/waybar
-stow waybar
-echo "-------"
+mv ~/.config/alacritty ~/.config/_BKP/
+mv ~/.config/astro ~/.config/_BKP/
+mv ~/.config/btop ~/.config/_BKP/
+mv ~/.config/fastfetch ~/.config/_BKP/
+mv ~/.config/fish ~/.config/_BKP/
+mv ~/.config/fuzzel ~/.config/_BKP/
+mv ~/.config/geany ~/.config/_BKP/
+mv ~/.config/gtk-3.0 ~/.config/_BKP/
+mv ~/.config/gtk-4.0 ~/.config/_BKP/
+mv ~/.config/htop ~/.config/_BKP/
+mv ~/.config/hypr ~/.config/_BKP/
+mv ~/.config/kitty ~/.config/_BKP/
+mv ~/.config/nvim ~/.config/_BKP/
+mv ~/.config/Thunar ~/.config/_BKP/
+mv ~/.config/waybar ~/.config/_BKP/
+mv ~/.config/xarchiver ~/.config/_BKP/
+mv ~/.config/xfce4 ~/.config/_BKP/
 
-mv ~/.config/hypr ~/.config/bkp/hypr
-stow hypr
-echo "-------"
-
-mv ~/.config/foot ~/.config/bkp/foot
-stow foot
-echo "-------"
-
-mv ~/.config/fish ~/.config/bkp/fish
-stow fish
-echo "-------"
-
-mv ~/.config/alacritty ~/.config/bkp/alacritty
-stow alacritty
-echo "-------"
-
-stow astro
-stow fzfc
-stow vimbtw
+stow config/
+stow home/
 
 cd ~
 

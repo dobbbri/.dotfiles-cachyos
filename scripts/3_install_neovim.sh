@@ -6,11 +6,8 @@ wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_6
 chmod u+x nvim-linux-x86_64.appimage
 sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
-nvim -v
-
 echo "- Install Neovim - languages --------------------------------------------"
-sudo pacman -S python3 go rust cargo ripgrep lua51 luarocks
-sudo pacman -S wget stow lua51 python-pip python3 python-pynvim
+sudo pacman -S python3 python-pip python-pynvim go rust cargo lua51 luarocks wl-clipboard
 
 #pip
 pip install neovim vim-vint --break-system-packages
@@ -19,9 +16,6 @@ pip install neovim vim-vint --break-system-packages
 
 # create a new symlink
 sudo ln -s /usr/bin/python3 /usr/bin/python
-
-echo "- fix neovim clipboard -------------------------------------------------"
-sudo pacman -S xsel xclip
 
 echo "- Install NPM packages --------------------------------------------------"
 npm i -g neovim tree-sitter-cli

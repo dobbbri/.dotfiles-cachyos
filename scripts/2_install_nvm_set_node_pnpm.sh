@@ -15,13 +15,10 @@ echo 'export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.config/fish/config.fish
 
 echo "- Install NPM packages --------------------------------------------------"
-&&
 npm i -g @ast-grep/cli npm-check-updates
-&&
+
 node -v
-&&
 npm -v
-&&
 nvm -v
 
 echo "- Install PNPM COREPACK packages --------------------------------------------------"

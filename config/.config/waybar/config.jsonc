@@ -1,126 +1,128 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 36,
-    "spacing": 4,
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 4,
 
-    "modules-left": ["custom/launcher", "hyprland/window"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "group/hardware", "pulseaudio", "network", "battery", "custom/notification", "clock", "custom/power"],
+  "modules-left": ["custom/launcher", "hyprland/window"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "tray",
+    "memory",
+    "cpu",
+    "pulseaudio",
+    "network",
+    "battery",
+    "custom/notification",
+    "clock",
+    "custom/power"
+  ],
 
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "persistent-workspaces": {
-            "*": [1,2,3,4,5]
-        },
-        "format-icons": {
-            "active": "󰮯",
-            "default": "󰊠"
-        }
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5]
     },
-
-	"custom/launcher": {
-		"format": "󰀻", 
-		"on-click": "fuzzel",
-		"tooltip-format": "Launch applications"
-	},
-
-    "hyprland/window": {
-        "format": "{title}",
-        "max-length": 55,
-        "rewrite": {
-            "": "Hyprland",
-            "(.*) — Mozilla Firefox": "󰈹 Firefox",
-            "(.*) - Alacritty": "❯ Terminal"
-        }
-    },
-
-    "clock": {
-        "format": "󱑂 {:%H:%M}",
-        "format-alt": "󰃭 {:%Y-%m-%d}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
-    },
-
-    "network": {
-        "format-wifi": "󰖩 {essid}",
-        "format-ethernet": "󰈀 {ifname}",
-        "format-disconnected": "󰖪 Disconnected",
-        "on-click": "alacritty -e gazelle" 
-    },
-
-    "cpu": {
-        "format": " {usage}% ",
-		"interval": 2,
-        "on-click": "alacritty -e htop"
-    },
-
-    "memory": {
-        "format": " {used:0.1f}G",
-        "tooltip-format": "{used: 0.3f}Mi / {total:0.3f}M",
-        "interval": 5,
-        "on-click": "alacritty -e btop"
-   },
-
-    "group/hardware": {
-        "orientation": "horizontal",
-        "modules": [
-            "cpu",
-            "memory"
-        ]
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟 Muted",
-        "format-icons": {
-            "headphone": "󰋋",
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "pavucontrol"
-    },
-
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-
-    "custom/notification": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": "󱅫",
-            "none": "󰂚",
-            "dnd-notification": "󱏧",
-            "dnd-none": "󱏧",
-            "inhibited-notification": "󱅫",
-            "inhibited-none": "󰂚",
-            "dnd-inhibited-notification": "󱏧",
-            "dnd-inhibited-none": "󱏧"
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
-    },
-
-    "custom/power": {
-        "tooltip": true,
-        "format": "",
-        "tooltip-format": "Power menu",
-        "on-click": "bash -lc 'choice=$(printf \" Shutdown\\n Reboot\\n Cancel\" | fuzzel --dmenu --hide-prompt --lines 3); case \"$choice\" in \" Shutdown\") systemctl poweroff ;; \" Reboot\") systemctl reboot ;; *) : ;; esac'"
-    },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 10
+    "format-icons": {
+      "active": "󰮯",
+      "default": "󰊠"
     }
+  },
+
+  "custom/launcher": {
+    "format": "󰀻",
+    "on-click": "fuzzel",
+    "icon-size": 20,
+    "tooltip-format": "Launch applications"
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 55,
+    "rewrite": {
+      "": "Hyprland",
+      "(.*) — Mozilla Firefox": "󰈹 Firefox",
+      "(.*) - Alacritty": "❯ Terminal"
+    }
+  },
+
+  "clock": {
+    "format": "󱑂 {:%H:%M}",
+    "format-alt": "󰃭 {:%Y-%m-%d}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+
+  "network": {
+    "format-wifi": "󰖩 {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰖪 Disconnected",
+    "on-click": "alacritty -e gazelle"
+  },
+
+  "cpu": {
+    "format": " {usage}% ",
+    "interval": 10,
+    "on-click": "alacritty -e btop"
+  },
+
+  "memory": {
+    "format": " {}%",
+    "interval": 10,
+    "on-click": "alacritty -e htop"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}{volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}{capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂚",
+      "dnd-notification": "󱏧",
+      "dnd-none": "󱏧",
+      "inhibited-notification": "󱅫",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󱏧",
+      "dnd-inhibited-none": "󱏧"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "custom/power": {
+    "tooltip": true,
+    "format": "",
+    "tooltip-format": "Power menu",
+    "on-click": "bash -lc 'choice=$(printf \" Shutdown\\n Reboot\\n Cancel\" | fuzzel --dmenu --hide-prompt --lines 3); case \"$choice\" in \" Shutdown\") systemctl poweroff ;; \" Reboot\") systemctl reboot ;; *) : ;; esac'"
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  }
 }
