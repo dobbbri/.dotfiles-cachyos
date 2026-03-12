@@ -36,9 +36,9 @@ local filetypes = {
   "toml",
   -- Git related
   "git_config",
-  "git_rebase",
-  "gitcommit",
   "gitignore",
+  -- "git_rebase",
+  -- "gitcommit",
   -- Other utilities
   "regex",
   "vim",
