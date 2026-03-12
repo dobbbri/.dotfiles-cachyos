@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 echo "Installing core programs..."
-paru -S --needed --noconfirm waybar bitwarden firefox swww thunar \
+paru -S --needed --noconfirm waybar bitwarden tumbler firefox swww thunar \
     swaync hyprpolkitagent hyprlock xarchiver gazelle-tui hyprshot ninja \
     fuzzel nwg-look qt6-wayland github-desktop nordic-theme papirus-icon-theme \
     cmake go zig uv typst brightnessctl ttf-jetbrains-mono-nerd imv mpv \
@@ -18,7 +18,7 @@ echo "Adding user to input group..."
 sudo usermod -aG input "$USER"
 
 echo "Setting up SDDM theme..."
-sudo cp -r hyprland/sddm/ /usr/share/sddm/themes/nordic-mountains/
+sudo cp -r ~/.dotfiles-cachyos/sddm/ /usr/share/sddm/themes/nordic-mountains/
 echo -e "[Theme]\nCurrent=nordic-mountains" | sudo tee /etc/sddm.conf
 
 echo "Copying configs..."
