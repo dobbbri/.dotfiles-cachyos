@@ -5,15 +5,13 @@
   "spacing": 4,
 
   "modules-left": ["custom/launcher", "hyprland/window"],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-center": ["memory", "hyprland/workspaces", "cpu"],
   "modules-right": [
     "tray",
-    "memory",
-    "cpu",
     "pulseaudio",
     "network",
     "battery",
-    "custom/notification",
+    "custom/update",
     "clock",
     "custom/power"
   ],
@@ -31,10 +29,23 @@
   },
 
   "custom/launcher": {
-    "format": "󰀻",
+    "format": "   ",
     "on-click": "fuzzel",
-    "icon-size": 20,
     "tooltip-format": "Launch applications"
+  },
+
+  "custom/update": {
+    "format": "{icon}",
+    "return-type": "json",
+    "format-icons": {
+      "pending-updates": "",
+      "updated": ""
+    },
+    "signal": 8,
+    "interval": 3600, // every hour
+    "exec": "checkupdates | wc -l", // # of updates
+    "exec-if": "exit 0", // always run; consider advanced run conditions
+    "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar" // update system
   },
 
   "hyprland/window": {
@@ -73,7 +84,7 @@
   },
 
   "pulseaudio": {
-    "format": "{icon}{volume}%",
+    "format": "{icon} {volume}%",
     "format-muted": "󰝟 Muted",
     "format-icons": {
       "headphone": "󰋋",
@@ -91,27 +102,6 @@
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-  },
-
-  "custom/notification": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "󱅫",
-      "none": "󰂚",
-      "dnd-notification": "󱏧",
-      "dnd-none": "󱏧",
-      "inhibited-notification": "󱅫",
-      "inhibited-none": "󰂚",
-      "dnd-inhibited-notification": "󱏧",
-      "dnd-inhibited-none": "󱏧"
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
   },
 
   "custom/power": {
