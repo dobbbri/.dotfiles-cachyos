@@ -1,6 +1,10 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
-export TERMINAL=alacritty
+
+export TERMINAL=kitty
+export TerminalEmulator=kitty
+
 set -U fish_greeting ""
+
 export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 

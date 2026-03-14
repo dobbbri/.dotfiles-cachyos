@@ -45,7 +45,7 @@
     "interval": 3600, // every hour
     "exec": "checkupdates | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "alacritty -e 'paru'; pkill -SIGRTMIN+8 waybar" // update system
+    "on-click": "kitty -e 'paru'; pkill -SIGRTMIN+8 waybar" // update system
   },
 
   "hyprland/window": {
@@ -68,19 +68,19 @@
     "format-wifi": "󰖩 {essid}",
     "format-ethernet": "󰈀 {ifname}",
     "format-disconnected": "󰖪 Disconnected",
-    "on-click": "alacritty -e gazelle"
+    "on-click": "kitty -e gazelle"
   },
 
   "cpu": {
     "format": " {usage}% ",
     "interval": 10,
-    "on-click": "alacritty -e btop"
+    "on-click": "kitty -e btop"
   },
 
   "memory": {
     "format": " {}%",
     "interval": 10,
-    "on-click": "alacritty -e htop"
+    "on-click": "kitty -e htop"
   },
 
   "pulseaudio": {
