@@ -9,7 +9,7 @@ paru -S --needed --noconfirm waybar bitwarden tumbler firefox swww thunar \
     fuzzel nwg-look qt6-wayland github-desktop nordic-theme papirus-icon-theme \
     cmake go zig uv typst brightnessctl ttf-jetbrains-mono-nerd imv mpv \
     gimp viu wl-clipboard clang docker gvfs gvfs-mtp libmtp python3 go rust cargo \
-    ripgrep lua51 luarocks wget stow python-pip python-pynvim wl-clipboard
+    ripgrep lua51 luarocks wget stow python-pip python-pynvim wl-clipboard htop kitty
 
 # create a new symlink
 sudo ln -s /usr/bin/python3 /usr/bin/python
