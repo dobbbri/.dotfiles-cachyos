@@ -4,11 +4,11 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 echo "Installing core programs..."
-paru -S --needed --noconfirm waybar bitwarden tumbler firefox swww thunar \
+sudo paru -S --needed --noconfirm waybar bitwarden tumbler firefox swww thunar \
     swaync hyprpolkitagent hyprlock xarchiver gazelle-tui hyprshot ninja \
     fuzzel nwg-look qt6-wayland github-desktop nordic-theme papirus-icon-theme \
     cmake go zig uv typst brightnessctl ttf-jetbrains-mono-nerd imv mpv \
-    gimp viu wl-clipboard clang docker gvfs gvfs-mtp libmtp python3 go rust cargo \
+    gimp viu wl-clipboard clang docker docker-composer gvfs gvfs-mtp libmtp python3 go rust cargo \
     ripgrep lua51 luarocks wget stow python-pip python-pynvim wl-clipboard htop kitty
 
 # create a new symlink
@@ -26,7 +26,7 @@ cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png ~/.config/hypr/wallpaper.png
 sudo cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png /usr/share/sddm/themes/nordic-mountains/Backgrounds/wallpaper.png
 
 echo "Removing bloat..."
-paru -R --noconfirm dolphin modemmanager 
+sudo paru -R --noconfirm dolphin modemmanager 
 
 echo "Creating docker group..."
 sudo systemctl enable --now docker
