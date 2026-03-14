@@ -4,15 +4,12 @@
 
 echo "- Dowload NodeJs installer -----------------------------------------------"
 
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-fisher install jorgebucaran/nvm.fish
-nvm ls-remote
-nvm install 22
-
-fish_add_path  ~/.local/share/nvm/v22.22.1/bin
-
-echo 'export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.config/fish/config.fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher \
+&& fisher install jorgebucaran/nvm.fish \
+&& nvm ls-remote \
+&& nvm install 22 \
+&& fish_add_path /home/sd/.local/share/nvm/v22.22.1/bin \
+&& fish_add_path /home/sd/.local/bin
 
 echo "- Install NPM packages --------------------------------------------------"
 npm i -g @ast-grep/cli npm-check-updates

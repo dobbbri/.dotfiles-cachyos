@@ -22,8 +22,8 @@ sudo cp -r ~/.dotfiles-cachyos/sddm/ /usr/share/sddm/themes/nordic-mountains/
 echo -e "[Theme]\nCurrent=nordic-mountains" | sudo tee /etc/sddm.conf
 
 echo "Copying configs..."
-cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png ~/.config/hypr/wallpaper.png
-sudo cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png /usr/share/sddm/themes/nordic-mountains/Backgrounds/wallpaper.png
+cp ~/.dotfiles-cachyos/wallpapers/cachygalaxy99.jpg ~/.config/hypr/wallpaper.png
+sudo cp ~/.dotfiles-cachyos/wallpapers/cachygalaxy99.jpg /usr/share/sddm/themes/nordic-mountains/Backgrounds/wallpaper.png
 
 echo "Removing bloat..."
 paru -R --noconfirm dolphin modemmanager 
