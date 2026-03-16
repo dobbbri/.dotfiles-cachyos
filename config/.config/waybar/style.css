@@ -14,11 +14,14 @@ window#waybar {
 #memory,
 #cpu,
 #battery,
+#temperature,
+#backlight,
 #window,
 #custom-power-profile,
 #custom-power,
 #custom-update,
 #custom-launcher,
+#idle_inhibitor,
 #tray {
   background: #4c566a;
   color: #eceff4;
@@ -41,11 +44,9 @@ window#waybar {
   background-color: #eceff4;
 }
 
+#network,
 #custom-power {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 0px 12px;
+  padding: 2px 6px 2px 10px;
 }
 #custom-power:hover {
   background: #bf616a;

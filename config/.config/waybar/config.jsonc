@@ -9,9 +9,12 @@
   "modules-right": [
     "tray",
     "pulseaudio",
-    "network",
-    "battery",
+    "temperature",
     "custom/update",
+    "backlight",
+    "network",
+    "idle_inhibitor",
+    "battery",
     "clock",
     "custom/power"
   ],
@@ -35,17 +38,12 @@
   },
 
   "custom/update": {
-    "format": "{icon}",
-    "return-type": "json",
-    "format-icons": {
-      "pending-updates": "",
-      "updated": ""
-    },
-    "signal": 8,
-    "interval": 3600, // every hour
-    "exec": "checkupdates | wc -l", // # of updates
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "kitty -e 'paru'; pkill -SIGRTMIN+8 waybar" // update system
+    "format": " {}",
+    "exec": "checkupdates | wc -l",
+    "interval": 1200, // Check every 30 minutes
+    "exec-if": "exit 0", // Always run the command
+    "on-click": "kitty -e paru -Syyu", // Example: run an update command in a terminal on click
+    "signal": 8 // Can be updated manually with pkill -SIGRTMIN+8 waybar
   },
 
   "hyprland/window": {
@@ -65,16 +63,25 @@
   },
 
   "network": {
-    "format-wifi": "󰖩 {essid}",
-    "format-ethernet": "󰈀 {ifname}",
+    "format-wifi": "󰖩 ",
+    "format-ethernet": "󰈀 ",
     "format-disconnected": "󰖪 Disconnected",
-    "on-click": "kitty -e /usr/bin/gazelle"
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "alacritty -e /usr/bin/gazelle"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
   },
 
   "cpu": {
-    "format": " {usage}% ",
+    "format": " {usage}%",
     "interval": 10,
-    "on-click": "kitty -e btop"
+    "on-click": "alacritty -e btop"
   },
 
   "memory": {
@@ -104,9 +111,23 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
+
   "custom/power": {
     "tooltip": true,
-    "format": "",
+    "format": " ",
     "tooltip-format": "Power menu",
     "on-click": "bash -lc 'choice=$(printf \" Shutdown\\n Reboot\\n Cancel\" | fuzzel --dmenu --hide-prompt --lines 3); case \"$choice\" in \" Shutdown\") systemctl poweroff ;; \" Reboot\") systemctl reboot ;; *) : ;; esac'"
   },
