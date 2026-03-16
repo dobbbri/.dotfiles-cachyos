@@ -26,7 +26,8 @@ cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png ~/.config/hypr/wallpaper.png
 sudo cp ~/.dotfiles-cachyos/wallpapers/the-sphere.png /usr/share/sddm/themes/nordic-mountains/Backgrounds/wallpaper.png
 
 echo "Removing bloat..."
-sudo paru -R --noconfirm dolphin modemmanager 
+sudo paru -R --noconfirm dolphin modemmanager zsh oh-my-zsh-git zsh-completions zsh-autosuggestions \
+  cachyos-zsh-config zsh-history-substring-search zsh-syntax-highlighting zsh-theme-powerlevel10k
 
 echo "Creating docker group..."
 sudo systemctl enable --now docker
