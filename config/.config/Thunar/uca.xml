@@ -12,4 +12,14 @@
 	<startup-notify/>
 	<directories/>
 </action>
+<action>
+	<icon>non-starred</icon>
+	<name>Open thunar as root here</name>
+	<submenu></submenu>
+	<unique-id>1773633387282498-1</unique-id>
+	<command>gksu thunar %f</command>
+	<description>Open thunar as root here</description>
+	<range>*</range>
+	<patterns>*</patterns>
+</action>
 </actions>
