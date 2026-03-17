@@ -1,77 +1,61 @@
 services:
-  nginx:
-    container_name: ${CONTAINER_NAME}-nginx
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
+  db:
+    image: mariadb:latest
+    container_name: ${CONTAINER_NAME}-db
     restart: unless-stopped
-    env_file: .env
     environment:
-      HOSTNAME: ${HOSTNAME}
-    ports:
-      - "80:80"
-      - "443:443"
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - wordpress:/var/www/html
+      - db_data:/var/lib/mysql
     networks:
-      - internal
-
-  database:
-    container_name: ${CONTAINER_NAME}-database
-    image: mysql:8.0
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      MYSQL_DATABASE: ${DATABASE_NAME}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
-      MYSQL_USER: ${DATABASE_USER}
-    healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p$$DATABASE_ROOT_PASSWORD" ]
-      timeout: 20s
-      retries: 10
-    ports:
-      - "3306:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - internal
-
-  phpmyadmin:
-    container_name: ${CONTAINER_NAME}-phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    env_file: .env
-    environment:
-      PMA_HOST: database
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
-    ports:
-      - "8081:80"
-    networks:
-      - internal
-
+      - wordpress_network
+    deploy:
+      resources:
+        limits:
+          memory: 1024m
+  
   wordpress:
     depends_on:
-      - database
-    container_name: ${CONTAINER_NAME}-wordpress
-    image: wordpress:6.5.2-fpm-alpine
+      - db
+    image: wordpress:latest
+    container_name: ${CONTAINER_NAME}-site
     restart: unless-stopped
-    env_file: .env
+    ports:
+      - "${WP_PORT}:80"
     environment:
-      WORDPRESS_DB_HOST: database:3306 # use the same name as database service
-      WORDPRESS_DB_NAME: '${DATABASE_NAME}'
-      WORDPRESS_DB_USER: '${DATABASE_USER}'
-      WORDPRESS_DB_PASSWORD: '${DATABASE_PASSWORD}'
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - wordpress:/var/www/html
-      - ./src:/var/www/html/wp-content:rw
+      - wp_data:/var/www/html
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      # - ./src:/var/www/html/wp-content:rw
     networks:
-      - internal
+      - wordpress_network
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${CONTAINER_NAME}-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "${PMA_PORT}:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    networks:
+      - wordpress_network
 
 volumes:
-  dbdata:
-  wordpress:
+  db_data:
+  wp_data:
 
 networks:
-  internal:
+  wordpress_network:
     driver: bridge
