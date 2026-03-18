@@ -1,7 +1,22 @@
+* {
+  border: none;
+  border-radius: 1;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font Propo';
+  font-size: 12px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+
 window#waybar {
-  background: transparent;
-  font-family: "JetBrainsMono Nerd Font", sans-serif;
-  font-size: 13px;
+  background: #000000;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
