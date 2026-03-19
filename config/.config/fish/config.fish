@@ -1,7 +1,7 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
-export TERMINAL=kitty
-export TerminalEmulator=kitty
+export TERMINAL=alacritty
+export TerminalEmulator=alacritty
 
 set -U fish_greeting ""
 
