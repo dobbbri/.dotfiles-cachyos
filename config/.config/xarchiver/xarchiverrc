@@ -1,5 +1,5 @@
 [xarchiver]
-preferred_format=0
+preferred_format=23
 prefer_unzip=true
 confirm_deletion=true
 sort_filename_content=false
@@ -12,7 +12,7 @@ show_sidebar=true
 show_location_bar=true
 show_toolbar=true
 preferred_custom_cmd=
-preferred_temp_dir=/home/Downloads
+preferred_temp_dir=/tmp
 preferred_extract_dir=/home/Downloads
 allow_sub_dir=0
 extended_dnd=1
