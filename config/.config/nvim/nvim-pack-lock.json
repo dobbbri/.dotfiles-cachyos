@@ -66,6 +66,10 @@
       "rev": "c46172d0911aa5d49ba5f39f4351d1bb7aa289cc",
       "src": "https://github.com/luukvbaal/statuscol.nvim"
     },
+    "termite.nvim": {
+      "rev": "c625c727a8a9713bf7bf0c9581d8e2cc8e9a459c",
+      "src": "https://github.com/ruicsh/termite.nvim"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
